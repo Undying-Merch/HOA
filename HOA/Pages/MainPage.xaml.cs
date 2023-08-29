@@ -1,4 +1,4 @@
-﻿using Android.Views;
+﻿//using Android.Views;
 using HOA.Pages;
 
 namespace HOA;

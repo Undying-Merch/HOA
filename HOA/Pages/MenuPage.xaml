@@ -15,7 +15,17 @@
             <ColumnDefinition Width=".33*"/>
             <ColumnDefinition Width=".33*"/>
         </Grid.ColumnDefinitions>
-        
-        
+
+        <Button
+            Grid.Row="0" Grid.Column="0"
+            Text="Anmeld 'Uheld'"
+            BackgroundColor="Red"
+            VerticalOptions="Center"
+            Clicked="goToAnmeld"/>
+
+        <Button
+            Grid.Row="0" Grid.Column="2"
+            Text="Nej"
+            VerticalOptions="Center"/>
     </Grid>
 </ContentPage>
