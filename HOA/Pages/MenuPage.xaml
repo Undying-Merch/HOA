@@ -26,6 +26,7 @@
         <Button
             Grid.Row="0" Grid.Column="2"
             Text="Nej"
-            VerticalOptions="Center"/>
+            VerticalOptions="Center"
+            Clicked="test"/>
     </Grid>
 </ContentPage>

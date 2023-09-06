@@ -3,10 +3,66 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="HOA.Pages.Anmeld"
              Title="Anmeld">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".33*"/>
+            <ColumnDefinition Width=".33*"/>
+            <ColumnDefinition Width=".33*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Picker
+            Grid.Row="0" Grid.Column="1"
+            x:Name="regelPicker"
+            SelectedIndexChanged="onRulePicked"
+            VerticalOptions="Center"/>
+
+        <Editor
+            Grid.Row="1" Grid.ColumnSpan="3"
+            x:Name="anmeldEditor"
+            IsTextPredictionEnabled="True"
+            PlaceholderColor="Purple"
+            IsEnabled="False"/>
+
+        <Button
+            Grid.Row="2" Grid.Column="0"
+            x:Name="captureBTN"
+            Text="Ta' Foto"
+            IsEnabled="True"
+            VerticalOptions="Center"
+            Clicked="capturePhoto"/>
+
+        <Label
+            Grid.Row="2" Grid.Column="1"
+            x:Name="photoLabel"
+            Text="Billede ikke vedlagt"
+            VerticalOptions="Center"
+            HorizontalTextAlignment="Center"
+            TextColor="Red"/>
+
+        <Button
+            Grid.Row="2" Grid.Column="2"
+            x:Name="uploadBTN"
+            Text="Upload Foto"
+            IsEnabled="True"
+            VerticalOptions="Center"
+            Clicked="pickPhoto"/>
+
+        <Button
+            Grid.Row="3" Grid.Column="1"
+            x:Name="reportBTN"
+            Text="Anmeld:"
+            IsEnabled="False"
+            VerticalOptions="Center"
+            BackgroundColor="DarkGreen"
+            IsVisible="false"/>
+
+    </Grid>
 </ContentPage>
