@@ -1,11 +1,14 @@
 ﻿//using Android.Views;
+using HOA.Classes;
 using HOA.Pages;
+using System.Text.Json;
 
 namespace HOA;
 
 public partial class MainPage : ContentPage
 {
-	private bool passHidden = true;
+	DBConn conn = new DBConn();
+    private bool passHidden = true;
 
 	public MainPage()
 	{
@@ -24,10 +27,10 @@ public partial class MainPage : ContentPage
     {
         bool loginSuccess = false;
 
-        //loginSuccess = conn.loginCheck(userEntry.Text.ToString(), passEntry.Text.ToString());
-
-
-        if (/*loginSuccess*/ userEntry.Text.ToString() == "jolj")
+        Beboer beboer = new Beboer(userEntry.Text.ToString(), passEntry.Text.ToString());
+        //Task<HttpResponseMessage> response = conn.passwordCheck(beboer);
+        //string response = conn.passwordCheck(beboer);
+        /*if ( userEntry.Text.ToString() == "jolj")
         {
             if (loginRemember.IsChecked == true)
             {
@@ -41,9 +44,8 @@ public partial class MainPage : ContentPage
         else
         {
             DisplayAlert("Error", "Incorrect UserName or Password", "OK");
-        }
-
-
+        }*/
+        DisplayAlert("test", conn.passwordCheck(beboer).ToString(), "ok");
     }
 
 

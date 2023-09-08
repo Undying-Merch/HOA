@@ -50,17 +50,19 @@ namespace HOA.Classes
             return rules;
         }
 
-
-        public void test()
+        public bool passwordCheck(Beboer beboer)
         {
-            string json = client.GetStringAsync(url + ":8000/data/Rliste/").Result;
-
+            var sJson = new StringContent(JsonSerializer.Serialize(beboer), Encoding.UTF8, "application/json");
+            var response = client.PostAsync(url + ":8000/data/password/", sJson);
+            bool boolResp = Boolean.Parse(response.Result.Content.ReadAsStringAsync().Result);
+            return boolResp;
         }
 
         public void poastTest(Beboer beboer)
         {
             var sJson = new StringContent(JsonSerializer.Serialize(beboer), Encoding.UTF8, "application/json");
-            client.PostAsync(url + ":8000/data/Bcreate/", sJson);
+            Task<HttpResponseMessage> respone = client.PostAsync(url + ":8000/data/Bcreate/", sJson);
+            Console.WriteLine(respone.Result);
         }
     }
 }

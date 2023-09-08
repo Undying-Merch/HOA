@@ -18,6 +18,11 @@ namespace HOA.Classes
 
 
         public Beboer() { }
+        public Beboer(string brugernavn, string password)
+        {
+            this.brugernavn = brugernavn;
+            this.password = password;
+        }
         public Beboer(string navn, string adresse, int tlf, string brugernavn, string password, string mail)
         {
             this.navn = navn;
