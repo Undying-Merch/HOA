@@ -28,9 +28,8 @@ public partial class MainPage : ContentPage
         bool loginSuccess = false;
 
         Beboer beboer = new Beboer(userEntry.Text.ToString(), passEntry.Text.ToString());
-        //Task<HttpResponseMessage> response = conn.passwordCheck(beboer);
-        //string response = conn.passwordCheck(beboer);
-        /*if ( userEntry.Text.ToString() == "jolj")
+        loginSuccess = conn.passwordCheck(beboer);
+        if (loginSuccess)
         {
             if (loginRemember.IsChecked == true)
             {
@@ -44,8 +43,8 @@ public partial class MainPage : ContentPage
         else
         {
             DisplayAlert("Error", "Incorrect UserName or Password", "OK");
-        }*/
-        DisplayAlert("test", conn.passwordCheck(beboer).ToString(), "ok");
+        }
+        
     }
 
 
