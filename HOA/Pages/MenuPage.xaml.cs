@@ -9,27 +9,21 @@ public partial class MenuPage : ContentPage
 	private DBConn m_dbConn = new DBConn();
 	
 
-	public MenuPage()
+	public MenuPage(string userName)
 	{
 		InitializeComponent();
+		pplId = m_dbConn.getUserId(userName);
+		if (pplId == 0)
+		{
+			DisplayAlert("Shit", "Fuck", "Crap");
+		}
 	}
 
-	public MenuPage(int id)
-	{
-		InitializeComponent();
-		this.pplId = id;
-	}
+	
 
 	public void goToAnmeld(object sender, EventArgs e)
 	{
-		Navigation.PushAsync(new Anmeld());
+		Navigation.PushAsync(new Anmeld(pplId));
 	}
-	public void test(object sender, EventArgs e)
-	{
-
-        Beboer beboer = new Beboer("test", "test", 12348765, "test", "test", "test@test");
-		string jsonString = JsonSerializer.Serialize(beboer);
-		jsonString = jsonString;
-		m_dbConn.poastTest(beboer);
-	}
+	
 }

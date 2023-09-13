@@ -22,7 +22,8 @@
             Grid.Row="0" Grid.Column="1"
             x:Name="regelPicker"
             SelectedIndexChanged="onRulePicked"
-            VerticalOptions="Center"/>
+            VerticalOptions="Center"
+            Title="Vælg Brudt Regel"/>
 
         <Editor
             Grid.Row="1" Grid.ColumnSpan="3"
@@ -35,7 +36,7 @@
             Grid.Row="2" Grid.Column="0"
             x:Name="captureBTN"
             Text="Ta' Foto"
-            IsEnabled="True"
+            IsEnabled="false"
             VerticalOptions="Center"
             Clicked="capturePhoto"/>
 
@@ -51,7 +52,7 @@
             Grid.Row="2" Grid.Column="2"
             x:Name="uploadBTN"
             Text="Upload Foto"
-            IsEnabled="True"
+            IsEnabled="false"
             VerticalOptions="Center"
             Clicked="pickPhoto"/>
 
@@ -62,7 +63,8 @@
             IsEnabled="False"
             VerticalOptions="Center"
             BackgroundColor="DarkGreen"
-            IsVisible="false"/>
+            IsVisible="false"
+            Clicked="sendReport"/>
 
     </Grid>
 </ContentPage>

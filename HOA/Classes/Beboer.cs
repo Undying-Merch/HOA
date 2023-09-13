@@ -9,6 +9,7 @@ namespace HOA.Classes
 {
     public class Beboer
     {
+        public int id {  get; set; }
         public string navn { get; set; }
         public string adresse { get; set; }
         public int tlf { get; set; }
@@ -23,8 +24,9 @@ namespace HOA.Classes
             this.brugernavn = brugernavn;
             this.password = password;
         }
-        public Beboer(string navn, string adresse, int tlf, string brugernavn, string password, string mail)
+        public Beboer(int id, string navn, string adresse, int tlf, string brugernavn, string password, string mail)
         {
+            this.id = id;
             this.navn = navn;
             this.adresse = adresse;
             this.tlf = tlf;

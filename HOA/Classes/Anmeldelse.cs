@@ -10,15 +10,25 @@ namespace HOA.Classes
     {
         public int id { get; set; }
         public int andmelder_id { get; set; }
-        public int location_id { get; set; }
+        public decimal lattitude { get; set; }
+        public decimal longtitude { get; set; }
         public int regel_id { get; set; }
+        public Image photo { get; set; }
 
         public Anmeldelse() { }
-        public Anmeldelse(int id, int andmelder_id, int location_id, int regel_id)
+        public Anmeldelse(int andmelder_id, decimal lattitude, decimal longtitude, int regel_id, Image photo)
         {
-            this.id = id;
             this.andmelder_id = andmelder_id;
-            this.location_id = location_id;
+            this.lattitude = lattitude;
+            this.longtitude = longtitude;
+            this.regel_id = regel_id;
+            this.photo = photo;
+        }
+        public Anmeldelse(int andmelder_id, decimal lattitude, decimal longtitude, int regel_id)
+        {
+            this.andmelder_id = andmelder_id;
+            this.lattitude = lattitude;
+            this.longtitude = longtitude;
             this.regel_id = regel_id;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
@@ -50,6 +51,22 @@ namespace HOA.Classes
             return rules;
         }
 
+        public int getUserId(string userName)
+        {
+            string json = client.GetStringAsync(url + ":8000/data/Bliste/").Result;
+            string[] bList = jsonSplit(json);
+            for(int i = 0; i < bList.Length; i++)
+            {
+                Beboer beboer = JsonSerializer.Deserialize<Beboer>(bList[i]);
+                if (beboer.brugernavn == userName)
+                {
+                    return beboer.id;
+                }
+            }
+            return 0;
+
+        }
+
         public bool passwordCheck(Beboer beboer)
         {
             var sJson = new StringContent(JsonSerializer.Serialize(beboer), Encoding.UTF8, "application/json");
@@ -58,11 +75,29 @@ namespace HOA.Classes
             return boolResp;
         }
 
-        public void poastTest(Beboer beboer)
+        public bool postAnmeldese(int pplId,decimal lattitude,decimal longitude,int regelId,string image)
         {
-            var sJson = new StringContent(JsonSerializer.Serialize(beboer), Encoding.UTF8, "application/json");
-            Task<HttpResponseMessage> respone = client.PostAsync(url + ":8000/data/Bcreate/", sJson);
-            Console.WriteLine(respone.Result);
+
+            //var sJson = new StringContent(JsonSerializer.Serialize(anmeldelse), Encoding.UTF8, "application/json");
+            //var response = client.PostAsync(url + ":8000/data/Acreate/", sJson);
+            using (var multupartFomrContent = new MultipartFormDataContent())
+            {
+                multupartFomrContent.Add(new StringContent(pplId.ToString()), name: "andmelder_id");
+                multupartFomrContent.Add(new StringContent(lattitude.ToString()), name: "lattitude");
+                multupartFomrContent.Add(new StringContent(longitude.ToString()), name: "longtitude");
+                multupartFomrContent.Add(new StringContent(regelId.ToString()), name: "regel_id");
+
+                var fileStreamContent = new StreamContent(File.OpenRead(image));
+                fileStreamContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("image/jpeg");
+                multupartFomrContent.Add(fileStreamContent, name: "photo", fileName: "anmeld.jpeg");
+
+                //var sJson = new StringContent(JsonSerializer.Serialize(multupartFomrContent), Encoding.UTF8, "application/json");
+                var response = client.PostAsync(url + ":8000/data/Acreate/", multupartFomrContent);
+                return response.Result.IsSuccessStatusCode;
+                
+            }
         }
+        
+        
     }
 }
